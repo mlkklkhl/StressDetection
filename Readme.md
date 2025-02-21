@@ -1,4 +1,3 @@
-```markdown
 # StressDetection Project
 
 This project is developed by COEAI, Walailak University. The goal of this project is to detect stress levels using physiological data such as Electrodermal Activity (EDA) and Photoplethysmogram (PPG).
@@ -37,7 +36,6 @@ python combine_raw_data.py
 
 This will process the data for subjects 1 to 25 and save the combined data files in the `data/Combined` directory.
 
-## Contact
+## License
 
-For any questions or issues, please contact COEAI, Walailak University.
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
