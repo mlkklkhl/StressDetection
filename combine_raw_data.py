@@ -13,8 +13,6 @@ def load_and_prepare_data(file_path):
 
 def prepare_eda_data(eda_df):
     signals, info = nk.eda_process(eda_df['EA'], sampling_rate=15, scr_min_amplitude=0.01)
-    nk.eda_plot(signals, info)
-    plt.show()
 
     extracted_df = pd.DataFrame()
     extracted_df['EDA'] = signals['EDA_Clean']
@@ -43,8 +41,6 @@ def prepare_ppg_data(ppg_df, window_size, sampling_rate):
 
     ppg_df.drop(columns=['LocalTimestamp'], inplace=True)
 
-    print(ppg_df.head().to_string())
-
     ppg_cleaned = nk.ppg_clean(ppg_df['PG'], sampling_rate=sampling_rate)
 
     hrv_results = []
@@ -56,7 +52,8 @@ def prepare_ppg_data(ppg_df, window_size, sampling_rate):
 
         start_time = ppg_df['Timestamp'].iloc[start]
 
-        print(f"Processing window at {start / sampling_rate}s - {end / sampling_rate}s")
+        if start % 3000 == 0:
+            print(f"Start time: {start_time} - End time: {ppg_df['Timestamp'].iloc[end]}")
 
         # Process PPG for this window
         ppg_processed, info = nk.ppg_process(window, sampling_rate=sampling_rate)
